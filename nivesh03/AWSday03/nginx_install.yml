@@ -1,0 +1,6 @@
+---
+- name: installing nginx and changing default page of nginx to the target host
+  hosts: localhost
+  become: true
+  roles:
+       - nginx

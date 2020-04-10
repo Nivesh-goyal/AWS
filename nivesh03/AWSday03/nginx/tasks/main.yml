@@ -1,0 +1,21 @@
+---
+# tasks file for nginx
+- name: updating repositories and installing nginx
+  apt:
+    update_cache: true
+    name: nginx
+    state: latest
+  notify:
+    - starting nginx
+- name: coping defaul nginx page html file toh target host
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  notify:
+    - restarting nginx  
+- name: collect facts about system services
+  service_facts:
+  register: services_state
+- name: Debug
+  debug:
+    var: services_state.ansible_facts.services["nginx.service"].state

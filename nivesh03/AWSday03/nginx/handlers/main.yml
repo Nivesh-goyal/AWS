@@ -1,0 +1,10 @@
+---
+# handlers file for nginx
+- name: starting nginx
+  service:
+    name: nginx
+    state: started
+- name: restarting nginx
+  service:
+    name: nginx
+    state: restarted
